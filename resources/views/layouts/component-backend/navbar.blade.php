@@ -375,11 +375,11 @@
             class="btn btn-outline-primary" tabindex="0" type="button" aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
               Logout
             </a>
-
+            
             <form action="{{ route('logout') }}" method="post" id="logout-form">
               @csrf
             </form>
-                          <a href="/main/authentication-login.html" class="">Log Out</a>
+                          
                         </div>
                       </div>
                     </div>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    public $fillable = ['name', 'slug', 'description', 'price', 'image', 'categopory_id'];
+    public $fillable = ['name', 'slug', 'description', 'price', 'image', 'category_id'];
 
     //relasi product ke category
     public function category(){
@@ -18,7 +18,7 @@ class Product extends Model
         return $this->hasMany(Cart::class);
     }
 
-    public function review(){
+    public function reviews(){
         return $this->hasMany(Review::class);
     }
 
@@ -26,6 +26,11 @@ class Product extends Model
     public function orders(){
         return $this->belongsToMany(Order::class)->withPivot('qty', 'price')
                     ->withTimestamps();
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     
