@@ -55,9 +55,11 @@ class CartController extends Controller
 
     public function updateCart(Request $request, $id)
     {
-        $cartItem = Cart::findOrFail($id);
+        $cartItem = Cart::with(
+            'product'
+        ) -> findOrFail($id);
         $request->validate([
-            'qty' => 'required|integer|min:1|max:'.$cartItem->product->stock,
+            'qty' => 'required|integer|min:1'
         ]);
 
         $cartItem->qty = $request->qty;
@@ -66,7 +68,6 @@ class CartController extends Controller
         toast('Jumlah berhasil diperbarui.', 'success');
         return redirect()->route('cart.index');
         }
-
     public function remove($id){
         $cart = Cart::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
         $cart->delete();

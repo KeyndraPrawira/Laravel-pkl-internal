@@ -56,25 +56,18 @@
                                                 <td class="cartarea__product__name"><a href="#">{{ $items->product->name }}</a></td>
                                                 <td class="cartarea__product__price__cart"><span class="amount">Rp {{ number_format($items->product->price, '0', ',', '.') }}</span></td>
                                                 <td class="cartarea__product__quantity">
-                                                    
-                                                       <form action="{{ route('cart.update', $items->id) }}" method="post">
+                                                     
+                                                       <form action="{{ route('cart.diupdate', $items->product->id) }}" method="post">    
                                                         @csrf
                                                         @method('PUT')
                                                         <div class="input-group">
-                                                            <input type="number" name="qty" value="{{ $items->qty }}" class="form-control" min="1" max="{{ $items->product->stock }}" style="max-width: 70px;" >
+                                                            <input type="number" name="qty" value="{{ $items->qty }}" class="form-control" min="1" max="{{ $items->product->stock }}" style="max-width: 70px;">
                                                             <button type="submit" class="btn btn-success btn-sm">
-                                                             <div class="btn btn-success btn-sm">
                                                                 Update
-                                                             </div>
                                                             </button>
                                                         </div>
                                                        </form>
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    </div>
-                                                  
+                                                       
                                                 </td>
                                                 <td class="cartarea__product__subtotal">Rp {{ number_format($items->qty*$items->product->price, 0,',', '.') }}</td>
                                                 <td class="cartarea__product__remove">

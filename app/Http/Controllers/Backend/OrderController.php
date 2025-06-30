@@ -30,7 +30,7 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
         $order->delete();
-
+        $order->products()->detach(); 
         toast('Pesanan berhasil dihapus.', 'success');
         return redirect()->route('backend.order.index');
     }
@@ -38,13 +38,13 @@ class OrderController extends Controller
     public function updateStatus(Request $request, $id)
     {
         $request->validate([
-            'status' => 'required|in:pending,success,cancel',
+            'status' => 'required|in:pending,completed,cancel',
         ]);
         $order = Order::findOrFail($id);
         $order->status = $request->status;
         $order->save();
 
         toast ('Satus order berhasil diperbarui.', 'success');
-        return redirect()->route('backend.order.show', $id);
+        return back();
     }
 }

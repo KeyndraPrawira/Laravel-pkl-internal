@@ -32,11 +32,11 @@
                                         <td>{{ $order->order_code }}</td>
                                        
                                         <td>{{ $order->user->name }}</td>
-                                         <td>Rp {{ number_format($order->total_pric,0, ',', '.') }}</td>
+                                         <td>Rp {{ number_format($order->total_price,0, ',', '.') }}</td>
                                         <td>
                                             @if ($order->status == 'pending')
                                                 <span class="badge bg-warning text-dark">Pending</span>
-                                            @elseif ($order->status == 'success')
+                                            @elseif ($order->status == 'completed')
                                                 <span class="badge bg-success">Success</span>
                                             @else ($order->status == 'cancel')
                                                 <span class="badge bg-danger">Cancel</span> 

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('order_code')->unique();
             $table->integer('total_price');
             $table->enum('status', ['pending', 'completed', 'cancel']);
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
 
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->integer('qty');
             $table->integer('price');
 
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }
